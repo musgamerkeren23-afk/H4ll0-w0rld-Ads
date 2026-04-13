@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>H4ll0 w0rld | All Scripts Hub - Banner Ad</title>
+<link href="https://fonts.googleapis.com/css2?family=Creepster&family=Share+Tech+Mono&family=Oswald:wght@700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0a0a0a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    gap: 40px;
+    padding: 40px 20px;
+    font-family: 'Share Tech Mono', monospace;
+  }
+
+  /* ===== BANNER 1: WIDE (1200x400) ===== */
+  .banner-wide {
+    width: 1200px;
+    height: 400px;
+    background: #000;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid #8b0000;
+    box-shadow: 0 0 40px #8b000066, 0 0 80px #8b000033;
+    flex-shrink: 0;
+  }
+
+  /* Noise texture */
+  .banner-wide::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+    opacity: 0.15;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* Blood drip top */
+  .drip-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: #8b0000;
+    z-index: 10;
+    box-shadow: 0 0 20px #ff000088;
+  }
+
+  .drip {
+    position: absolute;
+    top: 6px;
+    width: 8px;
+    background: linear-gradient(to bottom, #8b0000, #ff000088, transparent);
+    border-radius: 0 0 50% 50%;
+    animation: drip-fall 3s ease-in infinite;
+  }
+
+  @keyframes drip-fall {
+    0% { height: 0; opacity: 1; }
+    60% { height: 60px; opacity: 1; }
+    100% { height: 80px; opacity: 0; }
+  }
+
+  /* BG grid */
+  .grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(139,0,0,0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(139,0,0,0.07) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: 0;
+  }
+
+  /* Glitch lines */
+  .glitch-line {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: rgba(255,0,0,0.3);
+    animation: glitch-scan 4s linear infinite;
+    z-index: 2;
+  }
+
+  @keyframes glitch-scan {
+    0% { top: -10px; opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 0.5; }
+    100% { top: 110%; opacity: 0; }
+  }
+
+  /* Left side: TITLE */
+  .banner-left {
+    position: absolute;
+    left: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+  }
+
+  .hub-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 13px;
+    color: #ff4444;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    animation: flicker 2s infinite;
+  }
+
+  .hub-title {
+    font-family: 'Creepster', cursive;
+    font-size: 90px;
+    color: #fff;
+    line-height: 0.9;
+    text-shadow:
+      0 0 20px #ff0000,
+      0 0 40px #8b000088,
+      4px 4px 0 #8b0000;
+    letter-spacing: 2px;
+    position: relative;
+  }
+
+  .hub-title .glitch-text {
+    position: relative;
+    display: inline-block;
+  }
+
+  .hub-title .glitch-text::before,
+  .hub-title .glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+  }
+
+  .hub-title .glitch-text::before {
+    color: #ff0000;
+    clip-path: polygon(0 30%, 100% 30%, 100% 50%, 0 50%);
+    transform: translateX(-3px);
+    animation: glitch-clip1 3s infinite;
+  }
+
+  .hub-title .glitch-text::after {
+    color: #00ffff22;
+    clip-path: polygon(0 60%, 100% 60%, 100% 75%, 0 75%);
+    transform: translateX(3px);
+    animation: glitch-clip2 3s infinite;
+  }
+
+  @keyframes glitch-clip1 {
+    0%, 90%, 100% { transform: translateX(0); opacity: 0; }
+    92% { transform: translateX(-4px); opacity: 1; }
+    94% { transform: translateX(4px); opacity: 1; }
+    96% { transform: translateX(0); opacity: 0; }
+  }
+
+  @keyframes glitch-clip2 {
+    0%, 88%, 100% { transform: translateX(0); opacity: 0; }
+    90% { transform: translateX(3px); opacity: 1; }
+    93% { transform: translateX(-3px); opacity: 1; }
+    95% { transform: translateX(0); opacity: 0; }
+  }
+
+  .hub-subtitle {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 18px;
+    color: #cc0000;
+    letter-spacing: 8px;
+    margin-top: 10px;
+    text-transform: uppercase;
+  }
+
+  .hub-tagline {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 13px;
+    color: #666;
+    letter-spacing: 3px;
+    margin-top: 14px;
+  }
+
+  .hub-tagline span { color: #ff4444; }
+
+  /* Right side: FEATURES */
+  .banner-right {
+    position: absolute;
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+    text-align: right;
+  }
+
+  .feature-list {
+    list-style: none;
+    margin-bottom: 24px;
+  }
+
+  .feature-list li {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 15px;
+    color: #ccc;
+    padding: 5px 0;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+
+  .feature-list li::after {
+    content: '▶';
+    color: #8b0000;
+    font-size: 10px;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    padding: 14px 34px;
+    background: transparent;
+    border: 2px solid #8b0000;
+    color: #fff;
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 0 20px #8b000066;
+    transition: all 0.3s;
+  }
+
+  .cta-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #8b0000;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+    z-index: -1;
+  }
+
+  .cta-btn:hover::before { transform: scaleX(1); }
+  .cta-btn:hover { box-shadow: 0 0 40px #ff000088; }
+
+  /* Decorative skull/cross */
+  .deco-center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 120px;
+    color: rgba(139,0,0,0.08);
+    z-index: 1;
+    pointer-events: none;
+    user-select: none;
+    animation: pulse-deco 3s ease-in-out infinite;
+  }
+
+  @keyframes pulse-deco {
+    0%, 100% { opacity: 0.05; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 0.12; transform: translate(-50%, -50%) scale(1.05); }
+  }
+
+  @keyframes flicker {
+    0%, 95%, 100% { opacity: 1; }
+    96% { opacity: 0.3; }
+    97% { opacity: 1; }
+    98% { opacity: 0.5; }
+    99% { opacity: 1; }
+  }
+
+  /* Corner decorations */
+  .corner {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-color: #8b0000;
+    border-style: solid;
+    z-index: 6;
+  }
+  .corner.tl { top: 12px; left: 12px; border-width: 2px 0 0 2px; }
+  .corner.tr { top: 12px; right: 12px; border-width: 2px 2px 0 0; }
+  .corner.bl { bottom: 12px; left: 12px; border-width: 0 0 2px 2px; }
+  .corner.br { bottom: 12px; right: 12px; border-width: 0 2px 2px 0; }
+
+  /* Divider line */
+  .divider {
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    height: 60%;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, #8b0000, transparent);
+    z-index: 4;
+  }
+
+  /* ===== BANNER 2: SQUARE (600x600) ===== */
+  .banner-square {
+    width: 600px;
+    height: 600px;
+    background: #000;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid #8b0000;
+    box-shadow: 0 0 40px #8b000066;
+    flex-shrink: 0;
+  }
+
+  .sq-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(139,0,0,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(139,0,0,0.06) 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
+
+  .sq-top-bar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 5px;
+    background: #8b0000;
+    box-shadow: 0 0 20px #ff000088;
+  }
+
+  .sq-drip { position: absolute; top: 5px; width: 6px; background: linear-gradient(to bottom, #8b0000, transparent); border-radius: 0 0 50% 50%; animation: drip-fall 2.5s ease-in infinite; }
+
+  .sq-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    padding: 40px;
+    text-align: center;
+  }
+
+  .sq-eyebrow {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: #ff4444;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    animation: flicker 3s infinite;
+  }
+
+  .sq-title {
+    font-family: 'Creepster', cursive;
+    font-size: 72px;
+    color: #fff;
+    text-shadow: 0 0 20px #ff0000, 0 0 50px #8b000066, 3px 3px 0 #8b0000;
+    line-height: 0.9;
+    margin-bottom: 8px;
+  }
+
+  .sq-sub {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 14px;
+    color: #cc0000;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+  }
+
+  .sq-divider {
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #8b0000, transparent);
+    margin: 0 auto 30px;
+  }
+
+  .sq-features {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 30px;
+  }
+
+  .sq-feat {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 13px;
+    color: #bbb;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .sq-feat::before { content: '//'; color: #8b0000; }
+
+  .sq-cta {
+    padding: 12px 32px;
+    background: #8b0000;
+    color: #fff;
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 0 20px #ff000044;
+    animation: pulse-btn 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-btn {
+    0%, 100% { box-shadow: 0 0 20px #ff000044; }
+    50% { box-shadow: 0 0 40px #ff000088, 0 0 60px #8b000044; }
+  }
+
+  .sq-skull {
+    position: absolute;
+    font-size: 300px;
+    color: rgba(139,0,0,0.04);
+    z-index: 1;
+    animation: pulse-deco 4s ease-in-out infinite;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .sq-corner { position: absolute; width: 24px; height: 24px; border-color: #8b0000; border-style: solid; z-index: 6; }
+  .sq-corner.tl { top: 10px; left: 10px; border-width: 2px 0 0 2px; }
+  .sq-corner.tr { top: 10px; right: 10px; border-width: 2px 2px 0 0; }
+  .sq-corner.bl { bottom: 10px; left: 10px; border-width: 0 0 2px 2px; }
+  .sq-corner.br { bottom: 10px; right: 10px; border-width: 0 2px 2px 0; }
+
+  /* Labels */
+  .section-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: #555;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== BANNER WIDE (1200x400) ===== -->
+<div class="section-label">// BANNER WIDE — 1200×400px (Screenshot untuk sosmed)</div>
+<div class="banner-wide">
+  <div class="drip-bar"></div>
+
+  <!-- Blood drips -->
+  <div class="drip" style="left:5%; animation-delay:0s; animation-duration:2.8s"></div>
+  <div class="drip" style="left:15%; animation-delay:0.5s; animation-duration:3.2s; width:5px"></div>
+  <div class="drip" style="left:30%; animation-delay:1.1s; animation-duration:2.5s"></div>
+  <div class="drip" style="left:55%; animation-delay:0.3s; animation-duration:3.5s; width:10px"></div>
+  <div class="drip" style="left:70%; animation-delay:0.8s; animation-duration:2.9s"></div>
+  <div class="drip" style="left:85%; animation-delay:1.5s; animation-duration:3.1s; width:6px"></div>
+  <div class="drip" style="left:95%; animation-delay:0.2s; animation-duration:2.7s"></div>
+
+  <div class="grid-bg"></div>
+  <div class="glitch-line" style="animation-delay:0s; animation-duration:5s;"></div>
+  <div class="glitch-line" style="animation-delay:2.5s; animation-duration:7s; background:rgba(0,255,255,0.1)"></div>
+
+  <div class="deco-center">💀</div>
+  <div class="divider"></div>
+
+  <div class="corner tl"></div>
+  <div class="corner tr"></div>
+  <div class="corner bl"></div>
+  <div class="corner br"></div>
+
+  <!-- LEFT -->
+  <div class="banner-left">
+    <div class="hub-label">// Roblox Script Hub</div>
+    <div class="hub-title">
+      <div class="glitch-text" data-text="H4LL0">H4LL0</div><br>
+      <div class="glitch-text" data-text="W0RLD">W0RLD</div>
+    </div>
+    <div class="hub-subtitle">All Scripts Hub</div>
+    <div class="hub-tagline">Scripts terbaik untuk <span>Roblox</span> — gratis.</div>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="banner-right">
+    <ul class="feature-list">
+      <li>100+ Roblox Scripts</li>
+      <li>Auto Update</li>
+      <li>Anti-Ban Protection</li>
+      <li>Free Access</li>
+      <li>Dark & Horror Vibes</li>
+    </ul>
+    <div class="cta-btn">GET SCRIPTS NOW</div>
+  </div>
+</div>
+
+<!-- ===== BANNER SQUARE (600x600) ===== -->
+<div class="section-label">// BANNER SQUARE — 600×600px (Feed Instagram / TikTok thumbnail)</div>
+<div class="banner-square">
+  <div class="sq-top-bar"></div>
+
+  <div class="sq-drip" style="left:8%; animation-delay:0s;"></div>
+  <div class="sq-drip" style="left:22%; animation-delay:0.7s; width:8px;"></div>
+  <div class="sq-drip" style="left:45%; animation-delay:0.3s; width:5px;"></div>
+  <div class="sq-drip" style="left:68%; animation-delay:1.2s;"></div>
+  <div class="sq-drip" style="left:90%; animation-delay:0.5s; width:7px;"></div>
+
+  <div class="sq-grid"></div>
+
+  <div class="sq-skull">💀</div>
+
+  <div class="sq-corner tl"></div>
+  <div class="sq-corner tr"></div>
+  <div class="sq-corner bl"></div>
+  <div class="sq-corner br"></div>
+
+  <div class="sq-content">
+    <div class="sq-eyebrow">// Roblox Script Hub //</div>
+    <div class="sq-title">H4LL0<br>W0RLD</div>
+    <div class="sq-sub">All Scripts Hub</div>
+    <div class="sq-divider"></div>
+    <div class="sq-features">
+      <div class="sq-feat">100+ Roblox Scripts Free</div>
+      <div class="sq-feat">Auto Update & Anti-Ban</div>
+      <div class="sq-feat">Horror Dark Aesthetic</div>
+    </div>
+    <button class="sq-cta">ENTER THE HUB</button>
+  </div>
+</div>
+
+</body>
+</html>
